@@ -22,6 +22,11 @@ export class CompanysController {
     return this.companysService.findOne(+id);
   }
 
+  @Get('employees/:id')
+  findOneWithEmployees(@Param('id') id: string) {
+    return this.companysService.findOneWithEmployees(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
     return this.companysService.update(+id, updateCompanyDto);

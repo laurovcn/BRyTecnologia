@@ -22,11 +22,16 @@ export class EmployeesController {
     return this.employeesService.findOne(+id);
   }
 
+  @Get('companys/:id')
+  findOneWithCompanys(@Param('id') id: string) {
+    return this.employeesService.findOneWithCompanys(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto) {
     return this.employeesService.update(+id, updateEmployeeDto);
   }
-
+ 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.employeesService.remove(+id);

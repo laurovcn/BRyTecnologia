@@ -17,11 +17,15 @@ export class CompanysService {
   }
 
   async findAll() {
-    return await this.companysRepository.find();
+    return await this.companysRepository.find({relations: ["employees"]});
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.companysRepository.findOne({id});
+  }
+
+  async findOneWithEmployees(id: number) {
+    return this.companysRepository.findOne({id}, {relations:["employees"]});
   }
 
   async update(id: number, updateCompanyDto: UpdateCompanyDto) {

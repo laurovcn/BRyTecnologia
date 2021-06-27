@@ -1,7 +1,6 @@
 
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from "typeorm";
 import { Employee } from "src/employees/entities/employee.entity";
-
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from "typeorm";
 @Entity()
 export class Company {
 
@@ -15,10 +14,10 @@ export class Company {
     cnpj: string;
 
     @Column()
-    endereco: string; 
+    endereco: string;
 
     @ManyToMany(() => Employee, employee => employee.companys)
     employees: Employee[];
-    
+
 }
 

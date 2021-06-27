@@ -1,6 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
 import { Company } from "src/companys/entities/company.entity";
-
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
 @Entity()
 export class Employee {
 
@@ -11,16 +10,16 @@ export class Employee {
     name: string;   
 
     @Column()
-    cpf: string;
+    cpf: string;    
 
     @Column()
     email: string; 
 
     @Column()
-    endereco: string; 
+    endereco: string;      
     
-    @ManyToMany(() => Company, company => company.employees)
+    @ManyToMany(() => Company, company => company.employees, {cascade: true})
     @JoinTable()
-    companys: Company[]; 
-
-}
+    companys: Company[];
+       
+}       
