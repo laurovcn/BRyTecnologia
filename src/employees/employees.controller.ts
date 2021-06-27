@@ -13,7 +13,8 @@ export class EmployeesController {
       if (!result) {
         throw new BadRequestException('Cannot create employee')
       }
-      res.status(201).json({message:"Sucessfull at create employees", result})
+      res.status(201).json({message:"Sucessfull at create employee", result})
+
     } catch {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
@@ -30,6 +31,7 @@ export class EmployeesController {
         throw new BadRequestException('Cannot find employees')
       }
       res.status(200).json({message:"Sucessfull at find all employees", result})
+
     } catch {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
@@ -46,6 +48,7 @@ export class EmployeesController {
         throw new BadRequestException('Cannot find employee');
       }
       res.status(200).json({message:"Sucessfull at find employee", result})
+
     } catch {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
@@ -62,6 +65,7 @@ export class EmployeesController {
         throw new BadRequestException('Cannot find employee');
       }
       res.status(200).json({message:"Sucessfull at find companys of employee", result})
+
      } catch {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
@@ -78,6 +82,7 @@ export class EmployeesController {
         throw new BadRequestException('Cannot find employee');
       }
        res.status(200).json({message: "Sucessfull at update"})
+
     }  catch {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
