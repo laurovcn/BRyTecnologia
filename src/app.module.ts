@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmployeesModule } from './employees/employees.module';
 import { CompanysModule } from './companys/companys.module';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,7 +17,7 @@ import { CompanysModule } from './companys/companys.module';
       synchronize: true,
     }),
     EmployeesModule,
-    CompanysModule,
+    CompanysModule,    
   ],
   controllers: [AppController],
   providers: [AppService],

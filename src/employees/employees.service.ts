@@ -11,16 +11,16 @@ export class EmployeesService {
     private employeesRepository: Repository<Employee>,   
   ) {}
   
-  async create(createEmployeeDto: CreateEmployeeDto) {
-    return await this.employeesRepository.save(createEmployeeDto);
+  async create(createEmployeeDto: CreateEmployeeDto) {    
+      return await this.employeesRepository.save(createEmployeeDto);   
   } 
 
-  async findAll() {
-    return await this.employeesRepository.find({relations: ["companys"]});
+  async findAll() {    
+     return await this.employeesRepository.find({relations: ["companys"]})      
   }
 
-  async findOne(id: number) {
-    return this.employeesRepository.findOne({id});
+  async findOne(id: number) {    
+      return this.employeesRepository.findOne({id});  
   }
 
   async findOneWithCompanys(id: number) {

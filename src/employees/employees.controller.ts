@@ -1,39 +1,106 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, HttpException, HttpStatus, Res } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
-
 @Controller('employees')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
 
   @Post()
-  create(@Body() createEmployeeDto: CreateEmployeeDto) {
-    return this.employeesService.create(createEmployeeDto);
+  async create(@Body() createEmployeeDto: CreateEmployeeDto, @Res() res) {
+    try {
+      const result = await this.employeesService.create(createEmployeeDto);
+      if (!result) {
+        throw new BadRequestException('Cannot create employee')
+      }
+      res.status(201).json({message:"Sucessfull at create employees", result})
+    } catch {
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'Cannot create employee',
+      }, HttpStatus.FORBIDDEN);
+    }    
   }
 
   @Get()
-  findAll() {
-    return this.employeesService.findAll();
+  async findAll(@Res() res) {
+    try {
+      const result = await this.employeesService.findAll();
+      if (!result) {
+        throw new BadRequestException('Cannot find employees')
+      }
+      res.status(200).json({message:"Sucessfull at find all employees", result})
+    } catch {
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'Cannot find employees',
+      }, HttpStatus.FORBIDDEN);
+    }   
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.employeesService.findOne(+id);
-  }
+  async findOne(@Param('id') id: string, @Res() res) {
+    try { 
+      const result = await this.employeesService.findOne(+id);
+      if (!result) {
+        throw new BadRequestException('Cannot find employee');
+      }
+      res.status(200).json({message:"Sucessfull at find employee", result})
+    } catch {
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'Cannot find employee',
+      }, HttpStatus.FORBIDDEN);
+     } 
+   }
 
   @Get('companys/:id')
-  findOneWithCompanys(@Param('id') id: string) {
-    return this.employeesService.findOneWithCompanys(+id);
+  async findOneWithCompanys(@Param('id') id: string, @Res() res) {
+    try {
+      const result = await this.employeesService.findOneWithCompanys(+id);
+      if (!result) {
+        throw new BadRequestException('Cannot find employee');
+      }
+      res.status(200).json({message:"Sucessfull at find companys of employee", result})
+     } catch {
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'Cannot find employee',
+      }, HttpStatus.FORBIDDEN);
+     }    
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto) {
-    return this.employeesService.update(+id, updateEmployeeDto);
+  async update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto , @Res() res) {
+    try { 
+      const result = await this.employeesService.update(+id, updateEmployeeDto);
+      if (!result) {
+        throw new BadRequestException('Cannot find employee');
+      }
+       res.status(200).json({message: "Sucessfull at update"})
+    }  catch {
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: 'Cannot find employee',
+      }, HttpStatus.FORBIDDEN);
+     }   
   }
  
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.employeesService.remove(+id);
+  async remove(@Param('id') id: number, @Res() res) {
+   try {
+    const result = await this.employeesService.remove(+id);
+    if (result.affected === 0) {
+      throw new BadRequestException('Employee id not found.');
+    }
+    res.status(200).json({message: "Succesfull at delete"})
+    
+  }  catch {
+    throw new HttpException({
+      status: HttpStatus.FORBIDDEN,
+      error: 'Employee id not found',
+    }, HttpStatus.FORBIDDEN);
+   }   
   }
+
 }
