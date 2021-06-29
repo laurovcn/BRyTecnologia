@@ -16,16 +16,15 @@ export class EmployeesService {
   } 
 
   async findAll() {    
-     return await this.employeesRepository.find({relations: ["companys"]})      
+     return await this.employeesRepository.find()      
   }
 
   async findOne(id: number) {    
-      return this.employeesRepository.findOne({id}, {relations: ["companys"]});  
+      return this.employeesRepository.findOne({id});  
   } 
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    await this.employeesRepository.update({id}, updateEmployeeDto);
-    return await this.employeesRepository.findOne({id});
+    return await this.employeesRepository.update({id},updateEmployeeDto);
   }
 
   async remove(id: number) {

@@ -58,7 +58,7 @@ export class EmployeesController {
    } 
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto , @Res() res) {
+  async update(@Param('id') id: number, @Body() updateEmployeeDto: UpdateEmployeeDto , @Res() res) {
     try { 
       const result = await this.employeesService.update(+id, updateEmployeeDto);
       if (!result) {

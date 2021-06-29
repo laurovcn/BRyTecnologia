@@ -18,7 +18,9 @@ export class Employee {
     @Column()
     endereco: string;      
     
-    @ManyToMany(() => Company, company => company.employees, {cascade: true})
+    @ManyToMany(() => Company, company => company.employees, {cascade: true, 
+        eager: true
+    })
     @JoinTable()
     companys: Company[];
        

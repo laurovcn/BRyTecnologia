@@ -4,7 +4,6 @@ import { Repository } from 'typeorm/repository/Repository';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { Company } from './entities/company.entity';
-
 @Injectable()
 export class CompanysService {
   constructor(
@@ -17,16 +16,15 @@ export class CompanysService {
   }
 
   async findAll() {
-    return await this.companysRepository.find({relations: ["employees"]});
+    return await this.companysRepository.find();
   }
 
   async findOne(id: number) {
-    return this.companysRepository.findOne({id}, {relations: ["employees"]});
+    return this.companysRepository.findOne({id});
   }
   
   async update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    await this.companysRepository.update({id}, updateCompanyDto);
-    return await this.companysRepository.findOne({id});
+    return await this.companysRepository.update({id}, updateCompanyDto);   
   }
 
   async remove(id: number) {
