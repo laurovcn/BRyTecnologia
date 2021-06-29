@@ -59,22 +59,6 @@ export class CompanysController {
       }, HttpStatus.FORBIDDEN);
      } 
    }
-   @Get('employees/:id')
-   async findOneWithEmployees(@Param('id') id: string, @Res() res) {
-     try {
-       const result = await this.companysService.findOneWithEmployees(+id);
-       if (!result) {
-         throw new BadRequestException('Cannot find company');
-       }
-       res.status(200).json({message:"Sucessfull at find employees of company", result})
- 
-      } catch {
-       throw new HttpException({
-         status: HttpStatus.FORBIDDEN,
-         error: 'Cannot find company',
-       }, HttpStatus.FORBIDDEN);
-      }    
-   }
 
    @Patch(':id')
   async update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto , @Res() res) {

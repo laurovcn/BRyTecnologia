@@ -20,12 +20,8 @@ export class EmployeesService {
   }
 
   async findOne(id: number) {    
-      return this.employeesRepository.findOne({id});  
-  }
-
-  async findOneWithCompanys(id: number) {
-    return this.employeesRepository.findOne({id}, {relations:["companys"]});
-  }
+      return this.employeesRepository.findOne({id}, {relations: ["companys"]});  
+  } 
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
     await this.employeesRepository.update({id}, updateEmployeeDto);

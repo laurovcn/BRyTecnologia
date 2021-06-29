@@ -21,13 +21,9 @@ export class CompanysService {
   }
 
   async findOne(id: number) {
-    return this.companysRepository.findOne({id});
+    return this.companysRepository.findOne({id}, {relations: ["employees"]});
   }
-
-  async findOneWithEmployees(id: number) {
-    return this.companysRepository.findOne({id}, {relations:["employees"]});
-  }
-
+  
   async update(id: number, updateCompanyDto: UpdateCompanyDto) {
     await this.companysRepository.update({id}, updateCompanyDto);
     return await this.companysRepository.findOne({id});
