@@ -11,7 +11,7 @@ export class CompanysService {
     private companysRepository: Repository<Company>,
   ) {}
 
-   async create(createCompanyDto: CreateCompanyDto) {
+  async create(createCompanyDto: CreateCompanyDto) {
     return await this.companysRepository.save(createCompanyDto);
   }
 

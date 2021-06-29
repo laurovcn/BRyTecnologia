@@ -24,7 +24,7 @@ export class EmployeesService {
   } 
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return await this.employeesRepository.update({id},updateEmployeeDto);
+    return await this.employeesRepository.update({id}, updateEmployeeDto);
   }
 
   async remove(id: number) {
