@@ -22,7 +22,7 @@ export class CompanysController {
             status: HttpStatus.FORBIDDEN,
             error: 'Cannot create company',
           }, HttpStatus.FORBIDDEN);
-      }    
+       }    
     }
 
   @Get()
