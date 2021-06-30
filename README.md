@@ -55,4 +55,12 @@ You can test your api at localhost:3000/api (:
 You can run  npx @compodoc/compodoc -p tsconfig.json -s  
 then access localhost:8080  
 ```
+## Todo/fix
 
+``` 
+You can create company in a employee create or employee in a company create.
+But when you wants add in a existing employee or company, the register is duplicated...(unique: true dont let it happnnes)
+In sql has no problem with the relation.. 
+This is something that i will fix.
+
+``` 
