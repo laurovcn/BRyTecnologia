@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException,
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
-import { CreateCompanyDto } from 'src/companys/dto/create-company.dto';
 @Controller('employees')
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
