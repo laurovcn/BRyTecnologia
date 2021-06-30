@@ -24,11 +24,6 @@ export class EmployeesController {
     }    
   }
 
-  @Post('add')
-  async addCompany(@Body() createCompanyDto: CreateCompanyDto) {   
-     return await this.employeesService.addCompany(createCompanyDto);     
-  }
-
   @Get()
   async findAll(@Res() res) {
     try {
