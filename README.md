@@ -48,3 +48,9 @@ $ npm run start:prod
 ```API
 You can test your api at localhost:3000/api (:
 ```
+
+```Documentation
+You can run  npx @compodoc/compodoc -p tsconfig.json -s  
+then access localhost:8080  
+```
+
